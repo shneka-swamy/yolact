@@ -41,7 +41,7 @@ def parse_args(argv=None):
     parser = argparse.ArgumentParser(
         description='YOLACT COCO Evaluation')
     parser.add_argument('--trained_model',
-                        default='weights/ssd300_mAP_77.43_v2.pth', type=str,
+                        default='models/yolact_resnet50_54_800000.pth', type=str,
                         help='Trained state_dict file path to open. If "interrupt", this will open the interrupt file.')
     parser.add_argument('--top_k', default=5, type=int,
                         help='Further restrict the number of predictions to parse')
@@ -594,6 +594,7 @@ def badhash(x):
 
 def evalimage(net:Yolact, path:str, save_path:str=None):
     frame = torch.from_numpy(cv2.imread(path)).cuda().float()
+    print(f'frame shape: {frame.shape}, type: {frame.dtype}, device: {frame.device}')
     batch = FastBaseTransform()(frame.unsqueeze(0))
     preds = net(batch)
 
