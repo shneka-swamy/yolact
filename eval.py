@@ -1092,7 +1092,7 @@ if __name__ == '__main__':
                                     transform=BaseTransform(), has_gt=cfg.dataset.has_gt)
             prep_coco_cats()
         else:
-            dataset = None        
+            dataset = None
 
         print('Loading model...', end='')
         net = Yolact()
